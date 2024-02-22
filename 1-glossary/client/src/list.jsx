@@ -6,7 +6,7 @@ const List = ({list, deleteEntry, updateEntry}) => {
     <div>
       List Entries
       {list.map((item) => {
-        return <ListEntry key={item.name} entry={item} deleteEntry={deleteEntry} updateEntry={updateEntry}/>
+        return <ListEntry key={item.word} entry={item} deleteEntry={deleteEntry} updateEntry={updateEntry}/>
       })}
     </div>
   )
