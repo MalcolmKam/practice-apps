@@ -1,7 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
-const glossary = require('./db.js')
+const glossary = require('./db.js');
+
 
 const app = express();
 
@@ -17,20 +18,32 @@ app.use(express.json())
  *
  *
  */
+
+//set up post request
 app.post('/test', (req, res) => {
   let entry = new glossary({
     word: req.body.word,
     definition: req.body.definition
   });
-  entry.save()
-  .then(() => {
-    res.sendStatus(200);
+  entry.save((err) => {
+    if (err) {
+      console.error('oops')
+    }
+    res.sendStatus(200)
   })
-  .catch((err) => {
-    console.error('Error saving entry ', err);
-    res.sendStatus(500);
+});
+
+// set up get request
+app.get('/test', (req, res) => {
+  glossary.find()
+  .then((items) => {
+    res.send(items);
   })
 })
+
+//set up put request
+
+//set up delete request
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

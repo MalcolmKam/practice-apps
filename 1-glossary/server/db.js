@@ -6,7 +6,7 @@ mongoose.connect('mongodb://localhost/dictionary')
 const { Schema } = mongoose
 
 const glossarySchema = new Schema( {
-  word: String,
+  word: {type: String, unique: true},
   definition: String,
 })
 
