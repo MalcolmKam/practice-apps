@@ -39,6 +39,9 @@ app.get('/test', (req, res) => {
   .then((items) => {
     res.send(items);
   })
+  .catch((err) => {
+    console.error('unable to get data: ', err)
+  })
 })
 
 //set up a get request for a single entry
@@ -46,6 +49,9 @@ app.get('/test/:search', (req, res) => {
   glossary.findOne({'word': req.params.search})
   .then((entry) => {
     res.send(entry);
+  })
+  .catch((err) => {
+    console.error('unable to find entry: ', err)
   })
 })
 
