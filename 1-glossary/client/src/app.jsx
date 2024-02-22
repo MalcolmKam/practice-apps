@@ -10,7 +10,9 @@ const App = () => {
 
   const [word, setWord] = useState('');
 
-  const [definition, setDefinition] = useState('')
+  const [definition, setDefinition] = useState('');
+
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     axios.get('/test')
@@ -37,6 +39,18 @@ const App = () => {
     .then((response) => {
       setList(response.data);
     })
+    .catch((err) => {
+      console.error('unable to add to list ', err);
+    })
+  }
+
+  const wordSearch = () => {
+    event.preventDefault();
+    console.log(search);
+    axios.get(`/test/${search}`)
+    .then((response) => {
+      setList([response.data]);
+    })
   }
 
   return(
@@ -53,6 +67,11 @@ const App = () => {
           onChange={e => setDefinition(e.target.value)}/>
         </label>
         <button type="submit" onClick={addToList}>Add to list</button>
+      </form>
+      <form>
+        <input value={search}
+        onChange={e => setSearch(e.target.value)}/>
+        <button onClick={wordSearch}>Search for a word!</button>
       </form>
       <p>Hello, World!</p>
       <List list={list}/>

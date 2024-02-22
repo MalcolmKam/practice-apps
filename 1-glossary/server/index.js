@@ -33,11 +33,19 @@ app.post('/test', (req, res) => {
   })
 });
 
-// set up get request
+// set up get request for all data
 app.get('/test', (req, res) => {
   glossary.find()
   .then((items) => {
     res.send(items);
+  })
+})
+
+//set up a get request for a single entry
+app.get('/test/:search', (req, res) => {
+  glossary.findOne({'word': req.params.search})
+  .then((entry) => {
+    res.send(entry);
   })
 })
 
