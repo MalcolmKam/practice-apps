@@ -51,10 +51,61 @@ const App = () => {
     .then((response) => {
       setList([response.data]);
     })
+    .catch((err) => {
+      console.error('No matching entry found')
+    })
+  }
+
+  const goBack = () => {
+    event.preventDefault();
+    axios.get('/test')
+    .then((response) => {
+      setList(response.data);
+    })
+    .catch((error) => {
+      console.error('error getting data')
+    })
+  }
+
+  const deleteEntry = (word) => {
+    event.preventDefault();
+    axios.delete(`/test/${word}`)
+    .then((response) => {
+      console.log(response)
+    })
+    .then(() => {
+      return axios.get('/test')
+    })
+    .then((response) => {
+      setList(response.data)
+    })
+    .catch((err) => {
+      console.error('failed to delete entry: ', err);
+    })
+  }
+
+  const updateEntry = (word, definition) => {
+    event.preventDefault();
+    axios.put(`/test/${word}`, {
+      'definition': definition
+    })
+    .then((response) => {
+      console.log(response);
+    })
+    .then(() => {
+      return axios.get('/test')
+    })
+    .then((response) => {
+      setList(response.data)
+    })
+    .catch((err) => {
+      console.error(err);
+    })
   }
 
   return(
     <div>
+      <p>DICTIONARY</p>
       <form>
         <label>
           A word
@@ -72,9 +123,9 @@ const App = () => {
         <input value={search}
         onChange={e => setSearch(e.target.value)}/>
         <button onClick={wordSearch}>Search for a word!</button>
+        <button onClick={goBack}>Return to full list!</button>
       </form>
-      <p>Hello, World!</p>
-      <List list={list}/>
+      <List list={list} deleteEntry={deleteEntry} updateEntry={updateEntry}/>
     </div>
   )
 }
