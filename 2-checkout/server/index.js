@@ -3,9 +3,10 @@ const express = require("express");
 const path = require("path");
 const sessionHandler = require("./middleware/session-handler");
 const logger = require("./middleware/logger");
+const controllers = require("./controllers/query.js")
 
 // Establishes connection to the database on server start
-const db = require("./db");
+const db = require("./models/db");
 
 const app = express();
 
@@ -27,6 +28,9 @@ app.use(express.json());
  *
  *
  */
+
+//test
+app.get('/test1', controllers.find)
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
