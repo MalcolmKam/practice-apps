@@ -2,6 +2,7 @@ const mysql = require("mysql2");
 const Promise = require("bluebird");
 
 // Configure process.env variables in ../.env
+
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
