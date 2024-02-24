@@ -37,6 +37,25 @@ exports.findAccount = (req, res) => {
   })
 };
 
+exports.postShipping = (req, res) => {
+  new Promise((resolve, reject) => {
+    connection.query('INSERT INTO shippingInfo (account, address1, address2, city, state, zipcode) VALUES (?, ?, ?, ?, ?, ?)', [req.body.account, req.body.address1, req.body.address2, req.body.city, req.body.state, req.body.zipcode],  (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  })
+  .then(() => {
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+};
+
+
 exports.findShpping = (req, res) => {
   new Promise((resolve, reject) => {
     connection.query('select * from shippingInfo', (err, results) => {

@@ -44,7 +44,7 @@ const Profile = ({cookie}) => {
         <button onClick={submitProfileInfo}>Next</button>
       </form>
       )}
-      {showF2 && <Shipping />}
+      {showF2 && <Shipping cookie={cookie}/>}
     </div>
   );
 }
