@@ -30,13 +30,17 @@ app.use(express.json());
  */
 
 //test
-app.get('/form1', controllers.findAccount);
+app.get('/form1/:cookie', controllers.findAccount);
 
 app.post('/form1', controllers.postAccount);
 
 app.post('/form2', controllers.postShipping);
 
+app.get('/form2/:cookie', controllers.findShipping);
+
 app.post('/form3', controllers.postBilling);
+
+app.get('/form3/:cookie', controllers.findBilling);
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

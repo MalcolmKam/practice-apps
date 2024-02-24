@@ -28,7 +28,7 @@ const App = () => {
          </div>
       </div>
       )}
-      {showF1 && <Profile cookie={pageCookie}/>}
+      {showF1 && <Profile cookie={pageCookie} toggleF1={toggleF1}/>}
   </div>
   )
 };

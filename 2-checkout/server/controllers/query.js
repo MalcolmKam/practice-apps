@@ -20,8 +20,9 @@ exports.postAccount = (req, res) => {
 
 
 exports.findAccount = (req, res) => {
+  let cookie = req.params.cookie;
   new Promise((resolve, reject) => {
-    connection.query('select * from accountInfo', (err, results) => {
+    connection.query('select name, email, password from accountInfo where id = ?', [cookie], (err, results) => {
       if (err) {
         reject(err);
       } else {
@@ -34,6 +35,7 @@ exports.findAccount = (req, res) => {
   })
   .catch((err) => {
     console.error(err);
+    res.sendStatus(500);
   })
 };
 
@@ -52,13 +54,15 @@ exports.postShipping = (req, res) => {
   })
   .catch((err) => {
     console.error(err);
+    res.sendStatus(500);
   })
 };
 
 
-exports.findShpping = (req, res) => {
+exports.findShipping = (req, res) => {
+  let cookie = req.params.cookie;
   new Promise((resolve, reject) => {
-    connection.query('select * from shippingInfo', (err, results) => {
+    connection.query('select address1, address2, city, state, zipcode from shippingInfo where account = ?', [cookie], (err, results) => {
       if (err) {
         reject(err);
       } else {
@@ -71,6 +75,7 @@ exports.findShpping = (req, res) => {
   })
   .catch((err) => {
     console.error(err);
+    res.sendStatus(500);
   })
 };
 
@@ -91,12 +96,14 @@ exports.postBilling = (req, res) => {
   })
   .catch((err) => {
     console.error(err);
+    res.sendStatus(500);
   })
 };
 
 exports.findBilling = (req, res) => {
+  let cookie = req.params.cookie;
   new Promise((resolve, reject) => {
-    connection.query('select * from billingInfo', (err, results) => {
+    connection.query('select card_number, expiry_date, CVV, billing_zip_code from billingInfo where account = ?', [cookie], (err, results) => {
       if (err) {
         reject(err);
       } else {
@@ -109,5 +116,6 @@ exports.findBilling = (req, res) => {
   })
   .catch((err) => {
     console.error(err);
+    res.sendStatus(500);
   })
 }

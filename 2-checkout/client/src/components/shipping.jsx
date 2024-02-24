@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Billing from "./billing.jsx";
 import axios from 'axios';
 
-const Shipping = ({cookie}) => {
+const Shipping = ({cookie, toggleF1, toggleF2}) => {
 
   let [showF3, setShowF3] = useState(false);
 
@@ -54,7 +54,7 @@ const Shipping = ({cookie}) => {
         <button onClick={submitShippingInfo}>Next</button>
       </form>
       )}
-      {showF3 && <Billing cookie={cookie}/>}
+      {showF3 && <Billing cookie={cookie} toggleF1={toggleF1} toggleF2={toggleF2} toggleF3={toggleF3}/>}
     </div>
   );
 }

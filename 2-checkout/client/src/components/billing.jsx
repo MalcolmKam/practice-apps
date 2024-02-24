@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Summary from "./summary.jsx";
 import axios from "axios";
 
-const Billing = ({cookie}) => {
+const Billing = ({cookie, toggleF1, toggleF2, toggleF3}) => {
 
   let [showSummary, setShowSummary] = useState(false);
 
@@ -49,7 +49,7 @@ const Billing = ({cookie}) => {
         <button onClick={submitBillingInfo}>Proceed to Summary</button>
       </form>
       )}
-      {showSummary && <Summary />}
+      {showSummary && <Summary cookie={cookie} toggleF1={toggleF1} toggleF2={toggleF2} toggleF3={toggleF3} toggleSummary={toggleSummary}/>}
     </div>
   );
 }

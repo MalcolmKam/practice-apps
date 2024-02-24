@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import Shipping from "./shipping.jsx";
 import axios from "axios";
 
-const Profile = ({cookie}) => {
+const Profile = ({cookie, toggleF1}) => {
   let [showF2, setShowF2] = useState(false);
 
   let [name, setName] = useState('');
@@ -44,7 +44,7 @@ const Profile = ({cookie}) => {
         <button onClick={submitProfileInfo}>Next</button>
       </form>
       )}
-      {showF2 && <Shipping cookie={cookie}/>}
+      {showF2 && <Shipping cookie={cookie} toggleF1={toggleF1} toggleF2={toggleF2} />}
     </div>
   );
 }
