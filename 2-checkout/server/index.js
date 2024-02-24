@@ -30,7 +30,9 @@ app.use(express.json());
  */
 
 //test
-app.get('/test1', controllers.find)
+app.get('/form1', controllers.findAccount);
+
+app.post('/form1', controllers.postAccount);
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

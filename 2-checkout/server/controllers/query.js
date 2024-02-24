@@ -1,22 +1,63 @@
-const Promise = require("bluebird");
 const connection = require('../models/db.js')
 
-let queryAsync = Promise.promisify(connection.query);
+exports.postAccount = (req, res) => {
+  new Promise((resolve, reject) => {
+    connection.query('INSERT INTO accountInfo (id, name, email, password) VALUES (?, ?, ?, ?)', [req.body.id, req.body.name, req.body.email, req.body.password],  (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  })
+  .then(() => {
+    res.sendStatus(201);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+};
 
-exports.find = (req, res) => {
-  queryAsync('select * from accountInfo')
+
+exports.findAccount = (req, res) => {
+  new Promise((resolve, reject) => {
+    connection.query('select * from accountInfo', (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  })
   .then((response) => {
     res.send(response);
   })
   .catch((err) => {
     console.error(err);
-    res.sendStatus(500);
   })
-}
+};
 
-exports.find = (req, res) => {
+exports.findShpping = (req, res) => {
   new Promise((resolve, reject) => {
-    connection.query('select * from accountInfo', (err, results) => {
+    connection.query('select * from shippingInfo', (err, results) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    });
+  })
+  .then((response) => {
+    res.send(response);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
+};
+
+exports.findBilling = (req, res) => {
+  new Promise((resolve, reject) => {
+    connection.query('select * from billingInfo', (err, results) => {
       if (err) {
         reject(err);
       } else {

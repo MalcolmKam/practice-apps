@@ -3,5 +3,5 @@
 *.map
 *bundle.js
 config.js
-schema.sql
+# schema.sql
 node_modules/
