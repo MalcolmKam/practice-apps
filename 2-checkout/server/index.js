@@ -36,5 +36,7 @@ app.post('/form1', controllers.postAccount);
 
 app.post('/form2', controllers.postShipping);
 
+app.post('/form3', controllers.postBilling);
+
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

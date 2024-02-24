@@ -14,7 +14,7 @@ const Shipping = ({cookie}) => {
 
   let [state, setState] = useState('');
 
-  let [zipcode, setZipCode] = useState(null);
+  let [zipcode, setZipCode] = useState('');
 
 
   const toggleF3 = () => {
@@ -54,7 +54,7 @@ const Shipping = ({cookie}) => {
         <button onClick={submitShippingInfo}>Next</button>
       </form>
       )}
-      {showF3 && <Billing />}
+      {showF3 && <Billing cookie={cookie}/>}
     </div>
   );
 }

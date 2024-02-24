@@ -25,7 +25,7 @@ CREATE TABLE billingInfo (
   id INT PRIMARY KEY AUTO_INCREMENT,
   account VARCHAR(200),
   card_number INT,
-  expiry_date DATE,
+  expiry_date VARCHAR(200),
   CVV INT,
   billing_zip_code INT,
   FOREIGN KEY (account) REFERENCES accountInfo(id)
